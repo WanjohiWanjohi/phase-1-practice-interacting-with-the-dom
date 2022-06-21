@@ -15,6 +15,7 @@
  const pauseButton = document.querySelector("#pause")
  const counter = document.querySelector("#counter")
  const likes = document.querySelector(".likes")
+ const form = document.querySelector("form")
  let numbers = ['']
  var isPaused = false;
 
@@ -37,6 +38,13 @@ function pause(event){
     isPaused = true;
     clearInterval();
 }
+function comment(event){
+    event.preventDefault();
+    const comments = document.querySelector("#comments")
+    const p = document.createElement("p")
+    comments.appendChild(p)
+    p.innerText = event.target.comment.value
+}
 
 function timerIncrement(event) { 
     if(!isPaused) {
@@ -45,6 +53,7 @@ function timerIncrement(event) {
     } , 1000)
  }}
  document.addEventListener("DOMContentLoaded", timerIncrement);
+ form.addEventListener("submit" , comment);
  increment.addEventListener("click",manuallyIncrement);       
  decrement.addEventListener("click",manuallyDecrement);       
  like.addEventListener("click",likeNumber);       
